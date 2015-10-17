@@ -1,13 +1,13 @@
 {
-  "name": "angular-wizard",
+  "name": "QSDocker",
   "version": "1.0.0",
   "authors": [
     "Nathan Abu <nathanabu@gmail.com>"
   ],
-  "description": "Container deployment wizard",
+  "description": "Quickly deploy containers in a wizard like look & feel",
   "main": "",
   "moduleType": [],
-  "license": "MIT",
+  "license": "Apache License 2.0",
   "homepage": "",
   "private": true,
   "ignore": [
