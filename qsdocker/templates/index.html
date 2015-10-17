@@ -18,7 +18,7 @@
 
 <body>
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top" ng-controller="footerHeaderController">
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="applicationController">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#" ng-bind="PRODUCT_INFO.title"></a>
@@ -26,69 +26,37 @@
     <div id="navbar" class="collapse navbar-collapse navbar-right">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misc. <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misc. <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="dropdown-header">Application</li>
-            <li><a href="#">User statistics</a></li>
-            <li><a href="#">System information</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="#/user/stats">User statistics</a></li>
+            <li><a href="#/system/info">System information</a></li>
+            <li><a href="#/about">About</a></li>
             <li role="separator" class="divider"></li>
             <li class="dropdown-header">Code</li>
-            <li><a href="#">GitHub</a></li>
+            <li><a href="#/code">GitHub</a></li>
           </ul>
         </li>
       </ul>
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>
 
-<!-- Begin page content -->
-<div class="container" ng-controller="wizardController">
+<!-- Page content -->
+<div class="container" ng-controller="applicationController">
   <div class="page-header">
     <h1 ng-bind="PRODUCT_INFO.subtitle"></h1>
   </div>
-  <div class="row">
-    <wizard on-finish="finishedWizard()">
-      <wz-step title="strings.login.bullet">
-        <div class="row">
-          <div class="col-md-3 col-md-offset-4">
-            <h1 ng-bind="strings.login.title"></h1>
-            <p ng-bind="strings.login.description"></p>
-            <form ng-submit="loginOnSubmit()" name="loginForm" novalidate>
-              <formly-form model="model.login" fields="fields.login" form="loginForm">
-                <button type="submit" wz-next class="btn btn-primary submit-button" ng-disabled="loginForm.$invalid">Submit</button>
-              </formly-form>
-            </form>
-          </div>
-          <div class="col-md-3">
-             <div class="alert alert-danger" role="alert" ng-show="loginForm.$invalid && ! loginForm.$pristine">Warning!!</div>
-          </div>
-        </div>
-      </wz-step>
-      <wz-step title="strings.images.bullet">
-        <div class="row">
-          <div class="col-md-3 col-md-offset-4">
-            <h1 ng-bind="strings.images.title"></h1>
-            <p ng-bind="strings.images.description"></p>
-          </div>
-        </div>
-      </wz-step>
-      <wz-step title="strings.config.bullet">
-        <div class="row">
-          <div class="col-md-3 col-md-offset-4">
-            <h1 ng-bind="strings.config.title"></h1>
-            <p ng-bind="strings.config.description"></p>
-          </div>
-        </div>
-      </wz-step>
-    </wizard>
-  </div>
+  <!-- Render template partials here -->
+  <div ng-view></div>
 </div>
-<footer class="footer" ng-controller="footerHeaderController">
+<!-- Footer -->
+<footer class="footer" ng-controller="applicationController">
   <div class="container">
     <p class="text-muted" ng-bind="PRODUCT_INFO.version"></p>
   </div>
 </footer>
+
 <script src="{{ url_for('bower.static',filename='angular/angular.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-animate/angular-animate.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-route/angular-route.min.js') }}"></script>
@@ -99,6 +67,8 @@
 <script src="{{ url_for('bower.static',filename='api-check/dist/api-check.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-formly/dist/formly.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='controllers/wizardController.js') }}"></script>
+<script src="{{ url_for('static',filename='controllers/applicationController.js') }}"></script>
 <script src="{{ url_for('static',filename='app.js') }}"></script>
 </body>
 </html>

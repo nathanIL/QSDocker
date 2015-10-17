@@ -1,0 +1,36 @@
+  <div class="row">
+    <wizard on-finish="finishedWizard()">
+      <wz-step title="{{ strings.login.bullet }}">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <h1 ng-bind="strings.login.title"></h1>
+            <p ng-bind="strings.login.description"></p>
+            <form ng-submit="loginOnSubmit()" name="loginForm" novalidate>
+              <formly-form model="model.login" fields="fields.login" form="loginForm">
+                <button type="submit" wz-next class="btn btn-primary submit-button" ng-disabled="loginForm.$invalid">Submit</button>
+              </formly-form>
+            </form>
+          </div>
+          <div class="col-md-3">
+             <div class="alert alert-danger" role="alert" ng-show="loginForm.$invalid && ! loginForm.$pristine">Warning!!</div>
+          </div>
+        </div>
+      </wz-step>
+      <wz-step title="{{ strings.images.bullet }}">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <h1 ng-bind="strings.images.title"></h1>
+            <p ng-bind="strings.images.description"></p>
+          </div>
+        </div>
+      </wz-step>
+      <wz-step title="{{ strings.config.bullet }}">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <h1 ng-bind="strings.config.title"></h1>
+            <p ng-bind="strings.config.description"></p>
+          </div>
+        </div>
+      </wz-step>
+    </wizard>
+  </div>
