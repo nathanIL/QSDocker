@@ -1,0 +1,87 @@
+@font-face {
+    font-family: BrandFont;
+    src: url(3Dumb.ttf);
+}
+
+@font-face {
+    font-family: NavBarFont;
+    src: url(2Dumb.ttf);
+}
+
+.navbar-brand {
+  font-family: BrandFont;
+  color: #FCF8E3 !important;
+  font-size: 30px;
+}
+
+.dropdown-toggle {
+  font-family: NavBarFont;
+  color: #FCF8E3 !important;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-size: 16px;
+  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.navbar-fixed-top, .footer  {
+  background-color: #313131 !important;
+}
+
+.footer {
+ -webkit-box-shadow: 1px -4px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px -4px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 1px -4px 5px 0px rgba(0,0,0,0.75);
+}
+
+.navbar-fixed-top {
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: #fcf8e3;
+    background-color: transparent;
+}

@@ -1,0 +1,104 @@
+<!doctype html>
+
+<html lang="en" ng-app="qsdocker">
+<head>
+  <meta charset="utf-8">
+
+  <title>QSDocker</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../bower_components/angular-wizard/dist/angular-wizard.min.css">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="footerHeaderController">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">{{ PRODUCT_INFO.title }}</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misc. <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Application</li>
+            <li><a href="#">User statistics</a></li>
+            <li><a href="#">System information</a></li>
+            <li><a href="#">About</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Code</li>
+            <li><a href="#">GitHub</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<!-- Begin page content -->
+<div class="container" ng-controller="wizardController">
+  <div class="page-header">
+    <h1>{{ PRODUCT_INFO.subtitle }}</h1>
+  </div>
+  <div class="row">
+    <wizard on-finish="finishedWizard()">
+      <wz-step title="{{ strings.login.bullet }}">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <h1>{{ strings.login.title }}</h1>
+            <p>{{ strings.login.description }}</p>
+            <form ng-submit="loginOnSubmit()" name="loginForm" novalidate>
+              <formly-form model="model.login" fields="fields.login" form="loginForm">
+                <button type="submit" wz-next class="btn btn-primary submit-button" ng-disabled="loginForm.$invalid">Submit</button>
+              </formly-form>
+            </form>
+          </div>
+          <div class="col-md-3">
+             <div class="alert alert-danger" role="alert" ng-show="loginForm.$invalid && ! loginForm.$pristine">Warning!!</div>
+          </div>
+        </div>
+      </wz-step>
+      <wz-step title="{{ strings.images.bullet }}">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <h1>{{ strings.images.title }}</h1>
+            <p>{{ strings.images.description }}</p>
+          </div>
+        </div>
+      </wz-step>
+      <wz-step title="{{ strings.config.bullet }}">
+        <div class="row">
+          <div class="col-md-3 col-md-offset-4">
+            <h1>{{ strings.config.title }}</h1>
+            <p>{{ strings.config.description }}</p>
+          </div>
+        </div>
+      </wz-step>
+    </wizard>
+  </div>
+</div>
+<footer class="footer" ng-controller="footerHeaderController">
+  <div class="container">
+    <p class="text-muted">{{ PRODUCT_INFO.version }}</p>
+  </div>
+</footer>
+<script src="../../bower_components/angular/angular.min.js"></script>
+<script src="../../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../../bower_components/angular-route/angular-route.min.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../bower_components/lodash/dist/lodash.min.js"></script>
+<script src="../../bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+<script src="../../bower_components/api-check/dist/api-check.min.js"></script>
+<script src="../../bower_components/angular-formly/dist/formly.min.js"></script>
+<script src="../../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
+<script src="../../application/app.js"></script>
+</body>
+</html>
