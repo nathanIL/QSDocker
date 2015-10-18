@@ -29,7 +29,8 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misc. <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="dropdown-header">Application</li>
-            <li><a href="#/user/stats">User statistics</a></li>
+            <li ng-class="{ disabled: logged }"><a href="#/user/register">Register</a></li>
+            <li ng-class="{ disabled: ! logged }"><a href="#/user/stats">User statistics</a></li>
             <li><a href="#/system/info">System information</a></li>
             <li><a href="#/about">About</a></li>
             <li role="separator" class="divider"></li>

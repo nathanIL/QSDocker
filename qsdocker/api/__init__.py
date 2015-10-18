@@ -4,6 +4,9 @@ import urllib
 from qsdocker import app
 
 docker = Blueprint('docker',__name__, url_prefix=app.config['BASE_REST_API_ROUTE'])
+user = Blueprint('user',__name__, url_prefix=app.config['BASE_REST_API_ROUTE'] + '/user')
+
+
 
 @docker.before_request
 def docker_rest_api_request():
