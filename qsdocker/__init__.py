@@ -7,8 +7,8 @@ app = Flask(__name__)
 Bower(app)
 
 app.config.from_object(config)
-from qsdocker.api.authentication import register,identity
-jwt = JWT(app, register, identity)
+from qsdocker.api.authentication import authenticate,identity
+jwt = JWT(app, authenticate, identity)
 
 import qsdocker.views as views
 import qsdocker.api as api
