@@ -1,5 +1,5 @@
 angular.module('qsdocker',['ngRoute','mgo-angular-wizard','formly', 'formlyBootstrap','qsdocker.controllers.wizard',
-                           'qsdocker.controllers.app'])
+                           'qsdocker.controllers.app','qsdocker.services'])
     .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider.

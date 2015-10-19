@@ -1,6 +1,6 @@
   <div class="row">
     <wizard on-finish="finishedWizard()">
-      <wz-step title="{{ strings.login.bullet }}">
+      <wz-step title="{{ strings.login.bullet }}" wz-disabled="{{ Authentication.loggedIn }}">
         <div class="row">
           <div class="col-md-3 col-md-offset-4">
             <h1 ng-bind="strings.login.title"></h1>

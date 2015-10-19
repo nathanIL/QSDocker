@@ -29,8 +29,8 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misc. <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="dropdown-header">Application</li>
-            <li ng-class="{ disabled: logged }"><a href="#/user/register">Register</a></li>
-            <li ng-class="{ disabled: ! logged }"><a href="#/user/stats">User statistics</a></li>
+            <li ng-class="{ disabled: Authentication.loggedIn }"><a href="#/user/register">Register</a></li>
+            <li ng-class="{ disabled: ! Authentication.loggedIn }"><a href="#/user/stats">User statistics</a></li>
             <li><a href="#/system/info">System information</a></li>
             <li><a href="#/about">About</a></li>
             <li role="separator" class="divider"></li>
@@ -68,6 +68,7 @@
 <script src="{{ url_for('bower.static',filename='api-check/dist/api-check.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-formly/dist/formly.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='shared/services.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/wizardController.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/applicationController.js') }}"></script>
 <script src="{{ url_for('static',filename='app.js') }}"></script>

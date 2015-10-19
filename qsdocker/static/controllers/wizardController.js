@@ -1,6 +1,7 @@
 angular.module('qsdocker.controllers.wizard',[])
-    .controller('wizardController',['$scope','$log','WizardHandler', function($scope,$log,WizardHandler) {
-        $scope.logged = true;
+    .controller('wizardController',['$scope','$log','WizardHandler','Authentication',
+     function($scope,$log,WizardHandler,Authentication) {
+        $scope.Authentication = Authentication;
         $scope.strings = { login:  { title: 'Please login', description: 'Please enter your username and password to login', bullet: 'LOGIN' },
                            images: { title: 'Choose an image', description: 'Please choose the docker image to run', bullet: 'IMAGE' },
                            config: { title: 'Run configurations', description: 'Please configure the container', bullet: 'RUN CONFIG' } };
@@ -12,7 +13,7 @@ angular.module('qsdocker.controllers.wizard',[])
                           label: 'User email address',
                           type: 'email',
                           required: true,
-                          placeholder: 'Email Address...' }
+                          placeholder: 'Enter your email address...' }
                 },
                 {
                         key: 'password',
@@ -21,7 +22,7 @@ angular.module('qsdocker.controllers.wizard',[])
                           type: 'password',
                           label: 'Password',
                           required: true,
-                          placeholder: 'Password...' }
+                          placeholder: 'Enter your password...' }
                 }]
         };
         $scope.model = { login: {} };
@@ -39,8 +40,7 @@ angular.module('qsdocker.controllers.wizard',[])
         };
         $scope.finishedWizard = function() {
             $log.info("Called!");
-
         };
 
 
-    }]);
+     }]);
