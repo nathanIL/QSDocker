@@ -6,3 +6,6 @@ A lightweight (compare to [docker-manager](https://github.com/nathanIL/docker-ma
 ## Features
 * [jwt](http://jwt.io/) authentication.
 * Per user containers.
+
+## Operating system level requirements
+* _libffi_ package is required by _bcrypt_ module.

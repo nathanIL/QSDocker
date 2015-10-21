@@ -10,10 +10,11 @@ app.config.from_object(config)
 from qsdocker.api.authentication import authenticate,identity
 jwt = JWT(app, authenticate, identity)
 
-import qsdocker.views as views
-import qsdocker.api as api
+from qsdocker.views import root_views
+from qsdocker.api.docker import docker
+from qsdocker.api.user import user
 
-app.register_blueprint(views.bp)
-app.register_blueprint(api.docker)
-app.register_blueprint(api.user)
+app.register_blueprint(root_views)
+app.register_blueprint(docker)
+app.register_blueprint(user)
 

@@ -8,11 +8,13 @@ def register(username,password):
     Register a user to the system.
     :param username: username to register.
     :param password: the password to use for this user.
+    :return: True if registration successful, False otherwise.
     """
-    pass
+    return AuthService.register(username,password)
+
 
 def authenticate(username,password):
-    pass
+    return AuthService.register(username,password)
 
 
 def identity(payload):
