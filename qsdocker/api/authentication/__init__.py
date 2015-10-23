@@ -14,7 +14,7 @@ def register(username,password):
 
 
 def authenticate(username,password):
-    return AuthService.register(username,password)
+    return AuthService.authenticate(username,password)
 
 
 def identity(payload):

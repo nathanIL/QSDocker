@@ -27,20 +27,17 @@ angular.module('qsdocker.controllers.wizard',[])
         };
         $scope.model = { login: {} };
 
-
         $scope.loginOnSubmit = function() {
-                // TODO: Check on server side, replace 'true' tautology with the result
-                if (true) {
-                    $log.info($scope.model);
-                    WizardHandler.wizard().next();
-                } else {
-                    // Popup message with error
-                    $log.warn("Could not login!");
-                }
+                Authentication.login($scope.model.login.email,$scope.model.login.password).then(
+                    function(okResponse) {
+                            Authentication.loggedIn = true;
+                            WizardHandler.wizard().next();
+                    },
+                    function(failureResponse) {
+                        // TODO: Alert use with the failure
+                        $log.info(r)
+                    }
+                );
         };
-        $scope.finishedWizard = function() {
-            $log.info("Called!");
-        };
-
-
+        $scope.finishedWizard = function() { };
      }]);

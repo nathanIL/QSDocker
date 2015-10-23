@@ -21,7 +21,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="applicationController">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" ng-bind="PRODUCT_INFO.title"></a>
+      <a class="navbar-brand" href="#/" ng-bind="PRODUCT_INFO.title"></a>
     </div>
     <div id="navbar" class="collapse navbar-collapse navbar-right">
       <ul class="nav navbar-nav">
@@ -59,6 +59,7 @@
 </footer>
 
 <script src="{{ url_for('bower.static',filename='angular/angular.min.js') }}"></script>
+<script src="{{ url_for('bower.static',filename='angular-resource/angular-resource.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-animate/angular-animate.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-route/angular-route.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='jquery/dist/jquery.min.js') }}"></script>
@@ -71,6 +72,7 @@
 <script src="{{ url_for('static',filename='shared/services.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/wizardController.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/applicationController.js') }}"></script>
+<script src="{{ url_for('static',filename='controllers/registrationController.js') }}"></script>
 <script src="{{ url_for('static',filename='app.js') }}"></script>
 </body>
 </html>

@@ -3,5 +3,4 @@ angular.module('qsdocker.controllers.app',[])
      function($scope,PRODUCT_INFO,Authentication) {
         $scope.PRODUCT_INFO = PRODUCT_INFO;
         $scope.Authentication = Authentication;
-
      }]);
