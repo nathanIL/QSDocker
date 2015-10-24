@@ -1,5 +1,5 @@
 angular.module('qsdocker.controllers.registration',[])
-    .controller('registrationController', ['$scope', function($scope) {
+    .controller('registrationController', ['$scope','$location','Authentication', function($scope,$location,Authentication) {
         $scope.form = { title: 'Registration form',
                         model: {},
                         fields: [
@@ -10,10 +10,10 @@ angular.module('qsdocker.controllers.registration',[])
                               type: 'text',
                               required: true }
                            },
-                           { key: 'email',
+                           { key: 'username',
                             type: 'input',
                             templateOptions: {
-                              label: 'Your email address?',
+                              label: 'Your email address (will be your username)?',
                               type: 'email',
                               required: true }
                            },
@@ -31,5 +31,14 @@ angular.module('qsdocker.controllers.registration',[])
                               type: 'password',
                               required: true }
                            } ]
+        };
+        $scope.submitRegistration = function() {
+            Authentication.register($scope.form.model).then(function(success){
+                Authentication.loggedIn = true;
+                $location.path('/');
+            },
+            function(failure){
+                Authentication.loggedIn = false;
+            });
         };
     }]);

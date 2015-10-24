@@ -5,7 +5,7 @@ class User(object):
     """
      Authenticated identity class
     """
-    def __init__(self, username, password,id):
+    def __init__(self, username, password, id, **kwargs):
         self._username = username
         self._hashpw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self._id = id
@@ -31,22 +31,20 @@ class Authenticator(object):
     """
     __metaclass__ = ABCMeta
 
+
     @abstractmethod
-    def authenticate(self,username,password):
+    def authenticate(self, **kwargs):
         """
-        Checks against the resource (db,file,nis, etc..) if the user is valid and can be authenticated
-        :param username: the username to validate
-        :param password: the password
-        :return: True if authenticated, False otherwise
+        Checks against the resource (db,file,nis, etc..) if the user is valid and can be authenticated.
+        :returns: The identity object if success, False on failure.
         """
         pass
 
     @abstractmethod
-    def register(self,username,password):
+    def register(self, **kwargs):
         """
-        Registers a user to the system
-        :param username: the username to register
-        :param password: the username password
-        :return:
+        Registers a user to the system.
+        Should be implemented only if required by the selected AUTHENTICATION_TYPE.
+        On failure should throw a relevant exception from qsdocker.api.exceptions
         """
         pass
