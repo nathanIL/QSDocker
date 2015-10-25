@@ -1,11 +1,11 @@
 angular.module('qsdocker.services',[])
-    .service('Authentication', ['API_ENDPOINT','$http',function(API_ENDPOINT,$http) {
+    .service('Authentication', ['API_ENDPOINT','$http','$auth','$q',function(API_ENDPOINT,$http,$auth,$q) {
         this.loggedIn = false;
         this.register = function(data) {
-                return $http({url: API_ENDPOINT + '/users/register',
-                              method: 'POST',
-                              headers: { 'Content-Type':'application/json;' },
-                              data: data });
+            return $auth.signup(data)
         };
-        this.login = function(username,password) { }
+        this.login = function(data) {
+            return $auth.login(data)
+        };
+        //this.authenticate = function() {};
     }]);

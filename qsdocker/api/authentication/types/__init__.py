@@ -11,6 +11,10 @@ class User(object):
         self._id = id
 
     @property
+    def id(self):
+        return self._id
+
+    @property
     def username(self):
         return self._username
 
@@ -21,9 +25,11 @@ class User(object):
     def check_password(self,password):
         return bcrypt.hashpw(password.encode('utf-8'), self.hashed_password) == self.hashed_password
 
-    def __str__(self):
-        return self.username
+    def __getitem__(self, item):
+        return getattr(self,item)
 
+    def __str__(self):
+        return "User(id='%s', username='%s')" % (self.id, self.username)
 
 class Authenticator(object):
     """
@@ -37,6 +43,13 @@ class Authenticator(object):
         """
         Checks against the resource (db,file,nis, etc..) if the user is valid and can be authenticated.
         :returns: The identity object if success, False on failure.
+        """
+        pass
+
+    @abstractmethod
+    def identity(self, payload):
+        """
+        Returns the identity object
         """
         pass
 

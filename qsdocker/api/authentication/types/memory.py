@@ -6,20 +6,26 @@ class method(Authenticator):
     """
     Simple memory based authentication class
     """
+    _id_table = {}
+    _username_table = {}
+
     def __init__(self):
-        self._db = {}
         self._id = 0
 
     def authenticate(self, username, password, **kwargs):
         try:
-            if not self._db[username].check_password(password):
-                return self._db[username]
+            if self._username_table[username].check_password(password):
+                return self._username_table[username]
         except:
-            return False
+            pass
+
+    def identity(self, payload):
+        return self._id_table.get(payload['id'], None)
 
     def register(self, username, password, **kwargs):
-        if username in self._db:
+        if username in self._username_table:
             raise UserAlreadyExists()
         user = User(username=username, password=password, id=self._id)
+        self._id_table[self._id] = user
+        self._username_table[username] = user
         self._id += 1
-        self._db[username] = user

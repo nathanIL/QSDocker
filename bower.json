@@ -25,6 +25,7 @@
     "angular-wizard": "~0.5.5",
     "angular-formly": "~7.2.1",
     "angular-formly-templates-bootstrap": "~6.1.5",
-    "angular-resource": "~1.4.7"
+    "angular-resource": "~1.4.7",
+    "satellizer": "~0.12.5"
   }
 }

@@ -7,7 +7,7 @@ angular.module('qsdocker.controllers.wizard',[])
                            config: { title: 'Run configurations', description: 'Please configure the container', bullet: 'RUN CONFIG' } };
         $scope.fields = { login:
                 [{
-                        key: 'email',
+                        key: 'username',
                         type: 'input',
                         templateOptions: {
                           label: 'User email address',
@@ -28,14 +28,14 @@ angular.module('qsdocker.controllers.wizard',[])
         $scope.model = { login: {} };
 
         $scope.loginOnSubmit = function() {
-                Authentication.login($scope.model.login.email,$scope.model.login.password).then(
+                Authentication.login($scope.model.login).then(
                     function(okResponse) {
                             Authentication.loggedIn = true;
                             WizardHandler.wizard().next();
                     },
                     function(failureResponse) {
                         // TODO: Alert use with the failure
-                        $log.info(r)
+                        $log.info(failureResponse)
                     }
                 );
         };

@@ -34,10 +34,11 @@ angular.module('qsdocker.controllers.registration',[])
         };
         $scope.submitRegistration = function() {
             Authentication.register($scope.form.model).then(function(success){
-                Authentication.loggedIn = true;
+                // We go to the login page...
                 $location.path('/');
             },
             function(failure){
+                // TODO: Notify the user for the failure (Popver, tooltip, bootstrap alert, toastr?)
                 Authentication.loggedIn = false;
             });
         };

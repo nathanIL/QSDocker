@@ -4,6 +4,7 @@ Docker remote API docs can be found here: https://docs.docker.com/reference/api/
 """
 from flask import request, g, Blueprint
 from qsdocker import app
+from flask_jwt import jwt_required
 import requests_unixsocket
 import urllib
 
@@ -19,6 +20,7 @@ def docker_rest_api_request():
     g.docker_api_response = getattr(session,method.lower())('http+unix://{0}/{1}'.format(unix_socket,docker_rest_endpoint),json=request.json)
 
 @docker.route('/images/json', methods=['GET'])
+@jwt_required
 def images():
     """
     A flask route for the /images/json Docker Remote API: https://docs.docker.com/reference/api/docker_remote_api_v1.21/#list-images

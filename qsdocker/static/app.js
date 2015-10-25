@@ -1,7 +1,7 @@
-angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly', 'formlyBootstrap','qsdocker.controllers.wizard',
-                           'qsdocker.controllers.app','qsdocker.services','qsdocker.controllers.registration'])
-    .config(['$routeProvider',
-        function($routeProvider) {
+angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly', 'formlyBootstrap','satellizer',
+                           'qsdocker.controllers.wizard','qsdocker.controllers.app','qsdocker.services',
+                           'qsdocker.controllers.registration'])
+    .config(['$routeProvider','$authProvider','API_ENDPOINT', function($routeProvider,$authProvider,API_ENDPOINT) {
             $routeProvider.
               when('/', {
                 templateUrl: 'static/templates/wizard.html',
@@ -13,7 +13,10 @@ angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly',
               })
               .otherwise({
                 redirectTo: '/'
-              })
+              });
+            $authProvider.signupUrl = API_ENDPOINT + '/users/register';
+            $authProvider.loginUrl  = API_ENDPOINT + '/authenticate';
+            $authProvider.tokenName = 'access_token'; // flask_jwt default
         }
     ])
     .run(['$location','$rootScope','Authentication',function($location,$rootScope,Authentication) {
@@ -22,7 +25,6 @@ angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly',
               var registration_template = "static/templates/register.html";
               // If we are logged in, there shouldn't be a way to reach the registration form.
               if (true == Authentication.loggedIn && template.templateUrl == registration_template)  {
-                console.log("Will locate...");
                 $location.path('/');
               }
             });

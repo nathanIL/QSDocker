@@ -2,7 +2,7 @@
 User related API routes
 """
 from qsdocker import app
-from qsdocker.api.authentication import AuthService
+from qsdocker import AuthService
 from qsdocker.api.exceptions import UserAlreadyExists
 from flask import request, Blueprint, jsonify
 from flask_negotiate import consumes
