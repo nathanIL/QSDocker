@@ -39,7 +39,6 @@ angular.module('qsdocker.controllers.registration',[])
             },
             function(failure){
                 // TODO: Notify the user for the failure (Popver, tooltip, bootstrap alert, toastr?)
-                Authentication.loggedIn = false;
             });
         };
     }]);

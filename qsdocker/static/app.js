@@ -24,7 +24,7 @@ angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly',
               var template = next || current;
               var registration_template = "static/templates/register.html";
               // If we are logged in, there shouldn't be a way to reach the registration form.
-              if (true == Authentication.loggedIn && template.templateUrl == registration_template)  {
+              if (true == Authentication.loggedIn() && template.templateUrl == registration_template)  {
                 $location.path('/');
               }
             });

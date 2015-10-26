@@ -20,12 +20,15 @@ class method(Authenticator):
             pass
 
     def identity(self, payload):
+        print(payload)
         return self._id_table.get(payload['id'], None)
 
-    def register(self, username, password, **kwargs):
+    def register(self, **kwargs):
+        username = kwargs['username']
+
         if username in self._username_table:
             raise UserAlreadyExists()
-        user = User(username=username, password=password, id=self._id)
+        user = User(id=self._id, **kwargs)
         self._id_table[self._id] = user
         self._username_table[username] = user
         self._id += 1

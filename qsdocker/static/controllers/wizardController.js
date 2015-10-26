@@ -30,7 +30,6 @@ angular.module('qsdocker.controllers.wizard',[])
         $scope.loginOnSubmit = function() {
                 Authentication.login($scope.model.login).then(
                     function(okResponse) {
-                            Authentication.loggedIn = true;
                             WizardHandler.wizard().next();
                     },
                     function(failureResponse) {

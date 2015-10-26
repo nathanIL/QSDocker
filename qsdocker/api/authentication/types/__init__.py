@@ -5,8 +5,9 @@ class User(object):
     """
      Authenticated identity class
     """
-    def __init__(self, username, password, id, **kwargs):
+    def __init__(self, username, password, name, id, **kwargs):
         self._username = username
+        self._name = name
         self._hashpw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         self._id = id
 
@@ -15,7 +16,14 @@ class User(object):
         return self._id
 
     @property
+    def name(self):
+        return self._name
+
+    @property
     def username(self):
+        """
+        The actual unique user identity (the email).
+        """
         return self._username
 
     @property
@@ -29,7 +37,8 @@ class User(object):
         return getattr(self,item)
 
     def __str__(self):
-        return "User(id='%s', username='%s')" % (self.id, self.username)
+        return "User(id='%s', username='%s', name='%s')" % (self.id, self.username, self.name)
+
 
 class Authenticator(object):
     """
