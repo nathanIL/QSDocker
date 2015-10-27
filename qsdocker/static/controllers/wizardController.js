@@ -1,6 +1,6 @@
 angular.module('qsdocker.controllers.wizard',[])
-    .controller('wizardController',['$scope','$log','WizardHandler','Authentication','Images','NgTableParams',
-     function($scope,$log,WizardHandler,Authentication,Images,NgTableParams) {
+    .controller('wizardController',['$scope','$log','WizardHandler','Authentication','Images',
+     function($scope,$log,WizardHandler,Authentication,Images) {
         $scope.Authentication = Authentication;
         $scope.strings = { login:  { title: 'Please login', description: 'Please enter your username and password to login', bullet: 'LOGIN' },
                            images: { title: 'Choose an image', description: 'Please choose the docker image to run', bullet: 'IMAGE' },
