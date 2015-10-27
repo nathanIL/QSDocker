@@ -2,13 +2,16 @@ from flask import Flask
 from flask.ext.bower import Bower
 from flask_jwt import JWT
 from qsdocker import config
-from datetime import timedelta, datetime
+from datetime import datetime
+import flask
 import time
 import importlib
+import docker
 
 app = Flask(__name__)
 Bower(app)
 app.config.from_object(config)
+docker_client = docker.Client(base_url=app.config['DOCKER_BASE_URL'], version='auto')
 AuthService = importlib.import_module(app.config['AUTHENTICATION_TYPE']).method()
 
 
@@ -34,10 +37,10 @@ def payload_handler(identity):
 
 
 from qsdocker.views import root_views
-from qsdocker.api.docker import docker
+from qsdocker.api.docker import docker as docker_bp
 from qsdocker.api.user import user
 
 app.register_blueprint(root_views)
-app.register_blueprint(docker)
+app.register_blueprint(docker_bp)
 app.register_blueprint(user)
 

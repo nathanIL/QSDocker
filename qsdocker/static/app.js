@@ -16,6 +16,7 @@ angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly',
               });
             $authProvider.signupUrl = API_ENDPOINT + '/users/register';
             $authProvider.loginUrl  = API_ENDPOINT + '/authenticate';
+            $authProvider.authToken = 'JWT';
             $authProvider.tokenName = 'access_token'; // flask_jwt default
         }
     ])

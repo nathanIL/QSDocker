@@ -20,8 +20,7 @@ class method(Authenticator):
             pass
 
     def identity(self, payload):
-        print(payload)
-        return self._id_table.get(payload['id'], None)
+        return self._id_table.get(payload['identity'], None)
 
     def register(self, **kwargs):
         username = kwargs['username']

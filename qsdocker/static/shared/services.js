@@ -4,4 +4,7 @@ angular.module('qsdocker.services',[])
         this.register = $auth.signup;
         this.login = $auth.login;
         this.payload = $auth.getPayload;
+    }])
+    .service('Images', ['$resource','API_ENDPOINT', function($resource,API_ENDPOINT) {
+        return $resource(API_ENDPOINT + '/images')
     }]);
