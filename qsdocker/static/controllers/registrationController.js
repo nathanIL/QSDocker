@@ -33,12 +33,20 @@ angular.module('qsdocker.controllers.registration',[])
                            } ]
         };
         $scope.submitRegistration = function() {
-            Authentication.register($scope.form.model).then(function(success){
-                // We go to the login page...
-                $location.path('/');
-            },
-            function(failure){
-                // TODO: Notify the user for the failure (Popver, tooltip, bootstrap alert, toastr?)
-            });
+            // TODO: write an angular-formly validation for that
+            if ($scope.form.model.password_retype != $scope.form.model.password) {
+                sweetAlert("Registration error", "Both passwords must be equal", "error");
+                $scope.form.model.password_retype = $scope.form.model.password = ""
+            } else {
+                Authentication.register($scope.form.model).then(function(success){
+                    // We go to the login page...
+                    $location.path('/');
+                },
+                function(failure){
+                    console.log(failure);
+                    sweetAlert("Registration error", failure.data.message + ". Code: " + failure.data.status_code, "error");
+                    $scope.form.model = {};
+                })
+            }
         };
     }]);

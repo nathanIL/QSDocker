@@ -2,60 +2,67 @@
 
 <html lang="en" ng-app="qsdocker">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>QSDocker</title>
-  <meta name="description" content="QSDocker">
-  <meta name="author" content="nathanil">
+    <title>QSDocker</title>
+    <meta name="description" content="QSDocker">
+    <meta name="author" content="nathanil">
 
-  <link rel="stylesheet" href="{{ url_for('bower.static',filename='bootstrap/dist/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('bower.static',filename='angular-wizard/dist/angular-wizard.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/main.css') }}">
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+    <link rel="stylesheet" href="{{ url_for('bower.static',filename='bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('bower.static',filename='angular-wizard/dist/angular-wizard.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('bower.static',filename='sweetalert/dist/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/main.css') }}">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 
 <body>
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="applicationController">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#/" ng-bind="PRODUCT_INFO.title"></a>
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/" ng-bind="PRODUCT_INFO.title"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Hello <span ng-bind="Authentication.name()"></span><span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Application</li>
+                        <li ng-class="{ disabled: Authentication.loggedIn() }"><a href="#/user/register">Register</a>
+                        </li>
+                        <li ng-class="{ disabled: ! Authentication.loggedIn() }"><a href=""
+                                                                                    ng-click="logout()">Logout</a></li>
+                        <li ng-class="{ disabled: ! Authentication.loggedIn() }"><a href="#/user/stats">User
+                            statistics</a></li>
+                        <li><a href="#/system/info">System information</a></li>
+                        <li><a href="#/about">About</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Code</li>
+                        <li><a href="#/code">GitHub</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="navbar" class="collapse navbar-collapse navbar-right">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misc. <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-header">Application</li>
-            <li ng-class="{ disabled: Authentication.loggedIn() }"><a href="#/user/register">Register</a></li>
-            <li ng-class="{ disabled: ! Authentication.loggedIn() }"><a href="#/user/stats">User statistics</a></li>
-            <li><a href="#/system/info">System information</a></li>
-            <li><a href="#/about">About</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Code</li>
-            <li><a href="#/code">GitHub</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
 </nav>
 
 <!-- Page content -->
 <div class="container" ng-controller="applicationController">
-  <div class="page-header">
-    <h1 ng-bind="PRODUCT_INFO.subtitle"></h1>
-  </div>
-  <!-- Render template partials here -->
-  <div ng-view></div>
+    <div class="page-header">
+        <h1 ng-bind="PRODUCT_INFO.subtitle"></h1>
+    </div>
+    <!-- Render template partials here -->
+    <div ng-view></div>
 </div>
 <!-- Footer -->
 <footer class="footer" ng-controller="applicationController">
-  <div class="container">
-    <p class="text-muted" ng-bind="PRODUCT_INFO.version"></p>
-  </div>
+    <div class="container">
+        <p class="text-muted" ng-bind="PRODUCT_INFO.version"></p>
+    </div>
 </footer>
 
 <script src="{{ url_for('bower.static',filename='angular/angular.min.js') }}"></script>
@@ -69,6 +76,7 @@
 <script src="{{ url_for('bower.static',filename='satellizer/satellizer.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='api-check/dist/api-check.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-formly/dist/formly.min.js') }}"></script>
+<script src="{{ url_for('bower.static',filename='sweetalert/dist/sweetalert.min.js') }}"></script>
 <script src="{{ url_for('bower.static',filename='angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static',filename='shared/services.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/wizardController.js') }}"></script>

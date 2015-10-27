@@ -8,7 +8,7 @@ class QSDockerException(Exception):
     def __init__(self,message,status_code=400):
         super(QSDockerException,self).__init__(message)
         self._status_code = status_code
-        self._response = jsonify(message=self.message, status_code=status_code, sunccess=False)
+        self._response = jsonify(message=self.message, status_code=status_code, success=False)
         self._response.status_code = status_code
 
     @property
