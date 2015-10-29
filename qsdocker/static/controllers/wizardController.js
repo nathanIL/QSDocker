@@ -1,10 +1,12 @@
 angular.module('qsdocker.controllers.wizard',[])
-    .controller('wizardController',['$scope','$log','WizardHandler','Authentication','Images',
-     function($scope,$log,WizardHandler,Authentication,Images) {
+    .controller('wizardController',['$scope','WizardHandler','Authentication','Images',
+     function($scope,WizardHandler,Authentication,Images) {
         $scope.Authentication = Authentication;
-        $scope.strings = { login:  { title: 'Please login', description: 'Please enter your username and password to login', bullet: 'LOGIN' },
-                           images: { title: 'Choose an image', description: 'Please choose the docker image to run', bullet: 'IMAGE' },
-                           config: { title: 'Run configurations', description: 'Please configure the container', bullet: 'RUN CONFIG' } };
+        $scope.strings = { login:  { title: 'Login', description: 'Please enter your username and password to login', bullet: 'Login' },
+                           images: { title: 'Choose', description: 'Please choose the docker image to run', bullet: 'Image' },
+                           config: { title: 'Run', description: 'Please configure the container', bullet: 'Run Config' },
+                           manage: { title: 'Manage', description: 'Please manage your running containers', bullet: 'Manage' }};
+
         $scope.fields = { login:
                 [{
                         key: 'username',
@@ -25,21 +27,29 @@ angular.module('qsdocker.controllers.wizard',[])
                           placeholder: 'Enter your password...' }
                 }]
         };
+
         $scope.model = { login: {} };
-        $scope.images = {};
+        function loadImages() {
+            if (Authentication.loggedIn()) {
+                        Images.get(function(s) {
+                            $scope.images = s.images;
+                        }, function(f) {} );
+            }
+        }
 
         $scope.loginOnSubmit = function() {
                 Authentication.login($scope.model.login).then(
                     function(okResponse) {
-                            //Images.get(function(s){ $scope.images = s }, function(f) {} );
+                            loadImages()
                             WizardHandler.wizard().next();
                     },
                     function(failureResponse) {
                         // TODO: Alert use with the failure
-                        $log.info(failureResponse)
                     }
                 );
         };
 
+
+        loadImages();
         $scope.finishedWizard = function() { };
      }]);
