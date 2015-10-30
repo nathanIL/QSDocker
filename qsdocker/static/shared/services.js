@@ -17,4 +17,23 @@ angular.module('qsdocker.services',[])
     }])
     .service('Images', ['$resource','API_ENDPOINT', function($resource,API_ENDPOINT) {
         return $resource(API_ENDPOINT + '/images')
-    }]);
+    }])
+    .service('PopupMessage', function() {
+        /* Accepts a standard JSON object returned from the server with the following keys:
+        error,description,status_code.
+        swal is a SweetAlert function from here: http://t4t5.github.io/sweetalert/
+        */
+        return function(data) {
+            var swal_data = {};
+
+            if (data.status_code < 300) {
+                swal_data.type = "success"
+            } else if (data.status_code >= 300) {
+                swal_data = { type: "error", confirmButtonColor: "#DD6B55" }
+            }
+            swal_data.text = data.description;
+            swal_data.title = data.error + " (" + data.status_code + ")";
+            console.log(swal_data);
+            swal(swal_data)
+        }
+    });

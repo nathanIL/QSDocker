@@ -1,5 +1,6 @@
 angular.module('qsdocker.controllers.registration',[])
-    .controller('registrationController', ['$scope','$location','Authentication', function($scope,$location,Authentication) {
+    .controller('registrationController', ['$scope','$location','Authentication','PopupMessage',
+    function($scope,$location,Authentication,PopupMessage) {
         $scope.form = { title: 'Registration form',
                         model: {},
                         fields: [
@@ -44,7 +45,7 @@ angular.module('qsdocker.controllers.registration',[])
                 },
                 function(failure){
                     console.log(failure);
-                    sweetAlert("Registration error", failure.data.message + ". Code: " + failure.data.status_code, "error");
+                    PopupMessage(failure.data);
                     $scope.form.model = {};
                 })
             }

@@ -1,6 +1,6 @@
 angular.module('qsdocker.controllers.wizard',[])
-    .controller('wizardController',['$scope','WizardHandler','Authentication','Images',
-     function($scope,WizardHandler,Authentication,Images) {
+    .controller('wizardController',['$scope','WizardHandler','Authentication','Images','PopupMessage',
+     function($scope,WizardHandler,Authentication,Images,PopupMessage) {
         $scope.Authentication = Authentication;
         $scope.strings = { login:  { title: 'Login', description: 'Please enter your username and password to login', bullet: 'Login' },
                            images: { title: 'Choose', description: 'Please choose the docker image to run', bullet: 'Image' },
@@ -44,7 +44,8 @@ angular.module('qsdocker.controllers.wizard',[])
                             WizardHandler.wizard().next();
                     },
                     function(failureResponse) {
-                        // TODO: Alert use with the failure
+                        console.log(failureResponse);
+                        PopupMessage(failureResponse.data)
                     }
                 );
         };
