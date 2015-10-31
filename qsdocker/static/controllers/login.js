@@ -27,7 +27,7 @@ angular.module('qsdocker.controllers.login',[])
         $scope.loginOnSubmit = function() {
                 Authentication.login($scope.model).then(
                     function(okResponse) {
-                            $rootScope.$emit('loadImages');
+                            $rootScope.$emit('loadImages'); // imagesController listens to this.
                             WizardHandler.wizard().next();
                     },
                     function(failureResponse) {

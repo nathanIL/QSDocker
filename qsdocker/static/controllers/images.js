@@ -1,6 +1,6 @@
 angular.module('qsdocker.controllers.images',[])
-    .controller('imagesController',['$scope','$rootScope','Authentication','Images',
-     function($scope,$rootScope,Authentication,Images) {
+    .controller('imagesController',['$scope','$rootScope','$uibModal','Authentication','Images',
+     function($scope,$rootScope,$uibModal,Authentication,Images) {
         $scope.template = 'static/templates/images.html';
 
         $rootScope.$on('loadImages',function(event) {
@@ -17,6 +17,17 @@ angular.module('qsdocker.controllers.images',[])
                         } );
             }
         }
+        $scope.open = function(image) {
+            var modal_scope = $rootScope.$new(false);
+            modal_scope.selectedImage = image;
+
+            var modalInstance = $uibModal.open({
+              scope: modal_scope,
+              animation: true,
+              templateUrl: 'imageInfoModal.html',
+              size: 'lg'
+              })
+        };
 
         loadImages();
      }]);
