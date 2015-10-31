@@ -1,6 +1,6 @@
 angular.module('qsdocker',['ngRoute','ngResource','mgo-angular-wizard','formly', 'formlyBootstrap','satellizer',
                            'qsdocker.filters','qsdocker.controllers.wizard','qsdocker.controllers.app','qsdocker.services',
-                           'qsdocker.controllers.registration'])
+                           'qsdocker.controllers.registration','qsdocker.controllers.login','qsdocker.controllers.images'])
     .config(['$routeProvider','$authProvider','API_ENDPOINT', function($routeProvider,$authProvider,API_ENDPOINT) {
             $routeProvider.
               when('/', {

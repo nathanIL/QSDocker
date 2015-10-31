@@ -1,0 +1,13 @@
+<div class="col-md-3 col-md-offset-4">
+    <h1 ng-bind="strings.login.title"></h1>
+
+    <p ng-bind="strings.login.description"></p>
+
+    <form ng-submit="loginOnSubmit()" name="loginForm" novalidate>
+        <formly-form model="model" fields="login" form="loginForm">
+            <button type="submit" class="btn btn-primary submit-button"
+                    ng-disabled="loginForm.$invalid">Submit
+            </button>
+        </formly-form>
+    </form>
+</div>

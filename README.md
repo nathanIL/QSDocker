@@ -1,7 +1,7 @@
 # QSDocker
 Quickly Start a personalized Docker container by using a wizard like look & feel.
 
-A lightweight (compare to [docker-manager](https://github.com/nathanIL/docker-manager)) experimental project.
+A lightweight (compared to [docker-manager](https://github.com/nathanIL/docker-manager)) experimental project.
 
 ## Features
 * [jwt](http://jwt.io/) authentication.
@@ -9,3 +9,6 @@ A lightweight (compare to [docker-manager](https://github.com/nathanIL/docker-ma
 
 ## Operating system level requirements
 * _libffi_ package is required by _bcrypt_ module.
+
+##TODO
+* write tests (!)

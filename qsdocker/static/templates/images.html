@@ -1,0 +1,23 @@
+<div class="col-md-10">
+    <h1 ng-bind="strings.images.title"></h1>
+
+    <p ng-bind="strings.images.description"></p>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Version / Tag</th>
+            <th>Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="image in images">
+            <td>{{ image['Id'] | limitTo : 12 }}</td>
+            <td>{{ image['RepoTags'][0] | repoTagParse: 'name' }}</td>
+            <td>{{ image['RepoTags'][0] | repoTagParse: 'tag' }}</td>
+            <td>{{ image['Created'] * 1000 | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

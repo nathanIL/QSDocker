@@ -1,47 +1,13 @@
 <div class="row">
     <wizard on-finish="finishedWizard()">
         <wz-step title="{{ strings.login.bullet }}" wz-disabled="{{ Authentication.loggedIn() }}">
-            <div class="row">
-                <div class="col-md-3 col-md-offset-4">
-                    <h1 ng-bind="strings.login.title"></h1>
-
-                    <p ng-bind="strings.login.description"></p>
-
-                    <form ng-submit="loginOnSubmit()" name="loginForm" novalidate>
-                        <formly-form model="model.login" fields="fields.login" form="loginForm">
-                            <button type="submit" class="btn btn-primary submit-button"
-                                    ng-disabled="loginForm.$invalid">Submit
-                            </button>
-                        </formly-form>
-                    </form>
-                </div>
+            <div class="row" ng-controller="loginController">
+                <div ng-include="template"></div>
             </div>
         </wz-step>
         <wz-step title="{{ strings.images.bullet }}">
-            <div class="row">
-                <div class="col-md-10">
-                    <h1 ng-bind="strings.images.title"></h1>
-
-                    <p ng-bind="strings.images.description"></p>
-                    <table class="table table-condensed table-hover">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Version / Tag</th>
-                            <th>Created</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="image in images">
-                            <td>{{ image['Id'] | limitTo : 12 }}</td>
-                            <td>{{ image['RepoTags'][0] | repoTagParse: 'name' }}</td>
-                            <td>{{ image['RepoTags'][0] | repoTagParse: 'tag' }}</td>
-                            <td>{{ image['Created'] * 1000 | date:"MM/dd/yyyy 'at' h:mma" }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="row" ng-controller="imagesController">
+                <div ng-include="template"></div>
             </div>
         </wz-step>
         <wz-step title="{{ strings.config.bullet }}">
