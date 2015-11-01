@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="image in images">
-            <td><a href="" ng-click="open(image)" data-toggle="modal" data-target=".image-info-modal">{{
+            <td><a href="" ng-click="open(image['Id'])" data-toggle="modal" data-target=".image-info-modal">{{
                 image['Id'] | limitTo : 12
                 }}</a></td>
             <td>{{ image['RepoTags'][0] | repoTagParse: 'name' }}</td>
@@ -26,50 +26,12 @@
 <!-- Image information modal -->
 <script type="text/ng-template" id="imageInfoModal.html">
     <div class="modal-header">
-        <h3 class="modal-title"><i><b>{{ selectedImage['RepoTags'][0] | repoTagParse: 'name' }}</b></i> details</h3>
+        <h3 class="modal-title"><i>
+            <b>Image details</b></i>
+        </h3>
     </div>
     <div class="modal-body">
-        <div class="panel panel-info">
-            <div class="panel-heading">Image Id</div>
-            <div class="panel-body">{{ selectedImage['Id'] }}</div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Parent image id</div>
-            <div class="panel-body">{{ selectedImage['ParentId'] }}</div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Repository tags / names</div>
-            <div class="panel-body">
-                <ul>
-                    <li ng-repeat="tag in selectedImage['RepoTags']">
-                        <span class="label label-primary">{{ tag | repoTagParse: 'name' }}</span>
-                        <span class="label label-success">{{ tag | repoTagParse: 'tag' }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel panel-info" ng-show="selectedImage['RepoDigests'].length">
-            <div class="panel-heading">Repository digests</div>
-            <div class="panel-body">
-                <ul>
-                    <li ng-repeat="digest in selectedImage['RepoDigests']">
-                        <span class="label label-primary">{{ digest }}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Created</div>
-            <div class="panel-body">{{ selectedImage['Created'] * 1000 | date:"MM/dd/yyyy 'at' h:mma" }}</div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Virtual size</div>
-            <div class="panel-body">{{ selectedImage['VirtualSize'] }}</div>
-        </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">Size</div>
-            <div class="panel-body">{{ selectedImage['Size'] }}</div>
-        </div>
+        <div id="imageInfoArea"></div>
     </div>
 </script>
 </div>

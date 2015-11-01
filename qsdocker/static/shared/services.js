@@ -18,6 +18,9 @@ angular.module('qsdocker.services',[])
     .service('Images', ['$resource','API_ENDPOINT', function($resource,API_ENDPOINT) {
         return $resource(API_ENDPOINT + '/images')
     }])
+    .service('InspectImage', ['$resource','API_ENDPOINT', function($resource,API_ENDPOINT) {
+        return $resource(API_ENDPOINT + '/image/inspect/:id')
+    }])
     .service('PopupMessage', function() {
         /* Accepts a standard JSON object returned from the server with the following keys:
         error,description,status_code.
