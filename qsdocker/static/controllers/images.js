@@ -17,11 +17,12 @@ angular.module('qsdocker.controllers.images',[])
                         } );
             }
         }
-        $scope.open = function(image_id) {
+        $scope.open = function(image) {
             var modal_scope = $rootScope.$new(false);
 
-            InspectImage.get({ id: image_id }, function(success) {
-                modal_scope.data = success.data;
+            InspectImage.get({ id: image['Id'] }, function(success) {
+                modal_scope.selectedImage = image;
+
                 var modalInstance = $uibModal.open({
                   scope: modal_scope,
                   animation: true,
@@ -29,7 +30,7 @@ angular.module('qsdocker.controllers.images',[])
                   size: 'lg' });
 
                   modalInstance.rendered.then(function(d) {
-                         var imageInfoArea = angular.element( document.querySelector( '#imageInfoArea' ) );
+                         var imageInfoArea = angular.element( document.querySelector('#imageInfoArea') );
                          var node = JsonHuman.format(success.data);
                          imageInfoArea.append(node);
                   } )
@@ -37,16 +38,6 @@ angular.module('qsdocker.controllers.images',[])
                 console.log(error)
             })
            };
-
-/*            modal_scope.selectedImage = image;
-
-            var modalInstance = $uibModal.open({
-              scope: modal_scope,
-              animation: true,
-              templateUrl: 'imageInfoModal.html',
-              size: 'lg'
-              })*/
-
 
         loadImages();
      }]);
