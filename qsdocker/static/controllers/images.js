@@ -1,7 +1,8 @@
 angular.module('qsdocker.controllers.images',[])
     .controller('imagesController',['$scope','$rootScope','$uibModal','$document','Authentication','Images',
-                'InspectImage','PopupMessage',
-     function($scope,$rootScope,$uibModal,$document,Authentication,Images,InspectImage,PopupMessage) {
+                'InspectImage','PopupMessage','WizardHandler',
+     function($scope,$rootScope,$uibModal,$document,Authentication,Images,InspectImage,PopupMessage,
+       WizardHandler) {
         $scope.template = 'static/templates/images.html';
 
         $rootScope.$on('loadImages',function(event) {
@@ -43,6 +44,11 @@ angular.module('qsdocker.controllers.images',[])
                     })
                 });
            };
+
+         $scope.pickImage = function(pickedImage) {
+            $rootScope.$emit('pickedImage', pickedImage);
+            WizardHandler.wizard().next()
+         };
 
         loadImages();
      }]);

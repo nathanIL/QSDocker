@@ -56,7 +56,7 @@
 <!-- Page content -->
 <div class="container" ng-controller="applicationController">
     <div class="page-header">
-        <h1 ng-bind="PRODUCT_INFO.subtitle"></h1>
+        <h3 ng-bind="PRODUCT_INFO.subtitle"></h3>
     </div>
     <!-- Render template partials here -->
     <div ng-view></div>
@@ -90,6 +90,7 @@
 <script src="{{ url_for('static',filename='controllers/registration.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/login.js') }}"></script>
 <script src="{{ url_for('static',filename='controllers/images.js') }}"></script>
+<script src="{{ url_for('static',filename='controllers/config.js') }}"></script>
 <script src="{{ url_for('static',filename='app.js') }}"></script>
 </body>
 </html>

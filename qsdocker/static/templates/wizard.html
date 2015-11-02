@@ -1,5 +1,5 @@
 <div class="row">
-    <wizard on-finish="finishedWizard()">
+    <wizard on-finish="finishedWizard()" edit-mode="wizardEditMode">
         <wz-step title="{{ strings.login.bullet }}" wz-disabled="{{ Authentication.loggedIn() }}">
             <div class="row" ng-controller="loginController">
                 <div ng-include="template"></div>
@@ -11,12 +11,8 @@
             </div>
         </wz-step>
         <wz-step title="{{ strings.config.bullet }}">
-            <div class="row">
-                <div class="col-md-3 col-md-offset-4">
-                    <h1 ng-bind="strings.config.title"></h1>
-
-                    <p ng-bind="strings.config.description"></p>
-                </div>
+            <div class="row" ng-controller="configController">
+                <div ng-include="template"></div>
             </div>
         </wz-step>
         <wz-step title="{{ strings.manage.bullet }}">

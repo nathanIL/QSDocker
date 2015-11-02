@@ -20,7 +20,7 @@
             <td>{{ image['RepoTags'][0] | repoTagParse: 'name' }}</td>
             <td>{{ image['RepoTags'][0] | repoTagParse: 'tag' }}</td>
             <td>{{ image['Created'] * 1000 | date:"MM/dd/yyyy 'at' h:mma" }}</td>
-            <td><a href="" ng-click=""><span class="glyphicon glyphicon-play"></span></a></td>
+            <td><a href="" ng-click="pickImage(image)"><span class="glyphicon glyphicon-play"></span></a></td>
         </tr>
         </tbody>
     </table>

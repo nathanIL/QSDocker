@@ -24,11 +24,15 @@ angular.module('qsdocker.controllers.login',[])
                           placeholder: 'Enter your password...' }
                 }];
 
+        if (Authentication.loggedIn()) {
+            $rootScope.wizardEditMode = true
+        }
         $scope.loginOnSubmit = function() {
                 Authentication.login($scope.model).then(
                     function(okResponse) {
                             $rootScope.$emit('loadImages'); // imagesController listens to this.
                             WizardHandler.wizard().next();
+                            $rootScope.wizardEditMode = true
                     },
                     function(failureResponse) {
                         PopupMessage(failureResponse.data)
