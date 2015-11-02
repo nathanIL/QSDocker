@@ -9,6 +9,7 @@
             <th>Name</th>
             <th>Version / Tag</th>
             <th>Created</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
             <td>{{ image['RepoTags'][0] | repoTagParse: 'name' }}</td>
             <td>{{ image['RepoTags'][0] | repoTagParse: 'tag' }}</td>
             <td>{{ image['Created'] * 1000 | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td><a href="" ng-click=""><span class="glyphicon glyphicon-play"></span></a></td>
         </tr>
         </tbody>
     </table>

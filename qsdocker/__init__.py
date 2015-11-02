@@ -33,7 +33,7 @@ def payload_handler(identity):
     """
     now_epoch = time.mktime(datetime.now().timetuple())
     return dict(identity=identity.id, username=identity.username, iat=now_epoch, nbf=now_epoch,
-                name=identity.name, exp=now_epoch + 300)
+                name=identity.name, exp=now_epoch + app.config['JWT_EXPIRATION_DELTA'])
 
 
 from qsdocker.views import root_views
