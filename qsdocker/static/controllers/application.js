@@ -6,6 +6,7 @@ angular.module('qsdocker.controllers.app',[])
         $rootScope.wizardEditMode = false;
         $scope.logout = function() {
                 if ($scope.Authentication.logout()) {
+                    $rootScope.wizardEditMode = false;
                     $location.path('#/')
                 }
         }
