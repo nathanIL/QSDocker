@@ -14,24 +14,34 @@
         </thead>
         <tr>
             <td></td>
-            <td><input type="text" class="form-control" ng-model="_mp_key" placeholder="{{ options.templateOptions.key_name }}"></td>
-            <td><input type="text" class="form-control" ng-model="_mp_value" placeholder="{{ options.templateOptions.value_name }}"></td>
+            <td><input type="text" class="form-control" ng-model="_mp_key"
+                       placeholder="{{ options.templateOptions.key_name }}"></td>
+            <td><input type="text" class="form-control" ng-model="_mp_value"
+                       placeholder="{{ options.templateOptions.value_name }}"></td>
             <td>
-                <button class="btn btn-default" ng-disabled="! valid_kv_input(_mp_key,_mp_value)" type="button" ng-click="add()">
+                <button class="btn btn-default" ng-disabled="! valid_kv_input(_mp_key,_mp_value)" type="button"
+                        ng-click="add()">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </td>
         </tr>
         <tr>
             <td colspan="4">
-                <div class="alert alert-warning animate-show" ng-show="_mp_key.length > 0 && ! valid_kv_input(_mp_key,_mp_value)" role="alert"><span class="glyphicon glyphicon-exclamation-sign"><small> {{ error }}</small></span></div>
+                <div class="alert alert-warning animate-show"
+                     ng-show="_mp_key.length > 0 && ! valid_kv_input(_mp_key,_mp_value)" role="alert"><span
+                        class="glyphicon glyphicon-exclamation-sign"><small> {{ error }}</small></span></div>
             </td>
         </tr>
         <tr ng-repeat="element in model[options.key]">
             <td>{{ $index + 1 }}</td>
-            <td><input type="text" ng-disabled="true" class="form-control" ng-model="element.key" placeholder="{{ options.templateOptions.key_name }}"></td>
-            <td><input type="text" ng-disabled="true" class="form-control" ng-model="element.value" placeholder="{{ options.templateOptions.value_name }}"></td>
-            <td><button class="btn btn-default" type="button" ng-click="remove($index)"><span class="glyphicon glyphicon-minus"></span></button></td>
+            <td><input type="text" ng-disabled="true" class="form-control" ng-model="element.key"
+                       placeholder="{{ options.templateOptions.key_name }}"></td>
+            <td><input type="text" ng-disabled="true" class="form-control" ng-model="element.value"
+                       placeholder="{{ options.templateOptions.value_name }}"></td>
+            <td>
+                <button class="btn btn-default" type="button" ng-click="remove($index)"><span
+                        class="glyphicon glyphicon-minus"></span></button>
+            </td>
         </tr>
     </table>
     <hr/>
@@ -39,23 +49,28 @@
 
 <!-- ======================= End of templates ============================= -->
 
-<form ng-submit="modalRun()" name="startForm" novalidate>
-    <tabset justified="true">
-        <!-- Parameters tab (see Docker Remote API docs) -->
-        <tab heading="Parameters" active="true">
-            <formly-form model="regularStartParameters" fields="startParameterFields">
-                <div class="modal-footer">
-                    <button type="submit" ng-disabled="startForm.$invalid" class="btn btn-primary">Run</button>
-                </div>
-            </formly-form>
-        </tab>
-        <!-- Host Config tab (see Docker Remote API docs) -->
-        <tab heading="Host Config">
-            <formly-form model="hostConfigParameters" fields="HostConfigParameterFields">
-                <div class="modal-footer">
-                    <button type="submit" ng-disabled="startForm.$invalid" class="btn btn-primary">Run</button>
-                </div>
-            </formly-form>
-        </tab>
-    </tabset>
+<form ng-submit="modalRun()" name="configForm" novalidate>
+    <div class="row">
+        <h4><b>{{ pickImageName }}</b> pre-run configuration</h4>
+    </div>
+    <div class="row">
+        <uib-tabset justified="true">
+            <!-- Parameters tab (see Docker Remote API docs) -->
+            <uib-tab heading="Parameters" active="true">
+                <formly-form model="regularStartParameters" fields="regularParameterFields">
+                    <div class="modal-footer">
+                        <button type="submit" ng-disabled="configForm.$invalid" class="btn btn-primary">Run</button>
+                    </div>
+                </formly-form>
+            </uib-tab>
+            <!-- Host Config tab (see Docker Remote API docs) -->
+            <uib-tab heading="Host Config">
+                <formly-form model="hostConfigParameters" fields="HostConfigParameterFields">
+                    <div class="modal-footer">
+                        <button type="submit" ng-disabled="configForm.$invalid" class="btn btn-primary">Run</button>
+                    </div>
+                </formly-form>
+            </uib-tab>
+        </uib-tabset>
+    </div>
 </form>

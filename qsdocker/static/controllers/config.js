@@ -1,7 +1,10 @@
 angular.module('qsdocker.controllers.config',[])
-    .controller('configController', ['$scope','WizardHandler',function($scope,WizardHandler) {
+    .controller('configController', ['$scope','$rootScope','WizardHandler',function($scope,$rootScope,WizardHandler) {
         $scope.template = 'static/templates/config.html';
-        $scope.startParameterFields = [ { key: 'Hostname',  type: 'hostname', templateOptions: { placeholder: 'development-srv-01' } },
+        $rootScope.$on('pickedImage', function(event,pickedImage) {
+            $scope.pickImageName = pickedImage['RepoTags'][0]
+        });
+        $scope.regularParameterFields = [ { key: 'Hostname',  type: 'hostname', templateOptions: { placeholder: 'development-srv-01' } },
                                         { key: 'Domainname',type: 'domain',   templateOptions: { placeholder: 'mycompany.com' } },
                                         { key: 'User',
                                           type: 'input',
