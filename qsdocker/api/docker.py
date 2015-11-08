@@ -28,16 +28,16 @@ def api_call(method,*args,**kwargs):
 
 
 @docker.route('/container/<string:action>', methods=['POST'])
-#@jwt_required()
+@jwt_required()
 def container(action):
     """
     A route for interacting with containers, action can be:
     :param action: start, stop, inspect
     """
     if action == 'start':
-        print(request.json)
-        #imd = api_call('create_container', request.get_json())
-        return "GOOD" #request.get_json()
+        mid = api_call('create_container', **request.json)['Id']
+        # Pop or remove some elements from the request.json(??)
+        return api_call('create_container', **request.json)
     elif action == 'stop':
         pass
     elif action == 'inspect':
