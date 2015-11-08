@@ -4,6 +4,10 @@ angular.module('qsdocker.controllers.config',[])
         $rootScope.$on('pickedImage', function(event,pickedImage) {
             $scope.pickImageName = pickedImage['RepoTags'][0]
         });
+        $scope.regularStartParameters = {};
+        $scope.configSubmit = function() {
+            console.log($scope.regularStartParameters)
+        };
         $scope.regularParameterFields = [ { key: 'Hostname',  type: 'hostname', templateOptions: { placeholder: 'development-srv-01' } },
                                         { key: 'Domainname',type: 'domain',   templateOptions: { placeholder: 'mycompany.com' } },
                                         { key: 'User',
@@ -104,5 +108,4 @@ angular.module('qsdocker.controllers.config',[])
                                                templateOptions: { label: 'Close standard input once?',
                                                                   description: 'Close standard input after the 1 attached client disconnects'}
                                              } ];
-
     }]);

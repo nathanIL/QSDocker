@@ -3,7 +3,7 @@ Authentication aware Docker remote REST API routes.
 Docker remote API docs can be found here: https://docs.docker.com/reference/api/docker_remote_api_v1.21/
 The API is not called directly but uses the docker library which is imported to this module as 'docker_client'.
 """
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from qsdocker import app, docker_client
 from flask_jwt import jwt_required
 import docker as docker_module
@@ -27,6 +27,25 @@ def api_call(method,*args,**kwargs):
         return response
 
 
+@docker.route('/container/<string:action>', methods=['POST'])
+#@jwt_required()
+def container(action):
+    """
+    A route for interacting with containers, action can be:
+    :param action: start, stop, inspect
+    """
+    if action == 'start':
+        print(request.json)
+        #imd = api_call('create_container', request.get_json())
+        return "GOOD" #request.get_json()
+    elif action == 'stop':
+        pass
+    elif action == 'inspect':
+        pass
+    else:
+        raise Exception("Unhandled exception: unknown action provided")
+
+
 @docker.route('/images', methods=['GET'])
 @jwt_required()
 def images():
@@ -36,10 +55,11 @@ def images():
     return api_call('images')
 
 
-@docker.route('/image/inspect/<string:id>', methods=['GET'])
+@docker.route('/image/inspect/<string:mid>', methods=['GET'])
 @jwt_required()
-def inspect(id):
+def inspect(imd):
     """
      A flask route for the to get inspect data for an image from the docker remote API.
+     :param imd: the image id to inspect.
     """
-    return api_call('inspect_image', id)
+    return api_call('inspect_image', imd)

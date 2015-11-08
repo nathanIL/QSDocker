@@ -49,7 +49,7 @@
 
 <!-- ======================= End of templates ============================= -->
 
-<form ng-submit="modalRun()" name="configForm" novalidate>
+<form ng-submit="configSubmit()" name="configForm" novalidate>
     <div class="row">
         <h4><b>{{ pickImageName }}</b> pre-run configuration</h4>
     </div>
@@ -59,7 +59,7 @@
             <uib-tab heading="Parameters" active="true">
                 <formly-form model="regularStartParameters" fields="regularParameterFields">
                     <div class="modal-footer">
-                        <button type="submit" ng-disabled="configForm.$invalid" class="btn btn-primary">Run</button>
+                        <button type="submit" ng-disabled="configForm.$invalid || $scope.pickImageName === 'undefined'" class="btn btn-primary">Run</button>
                     </div>
                 </formly-form>
             </uib-tab>
