@@ -6,7 +6,9 @@ angular.module('qsdocker.controllers.config',[])
         });
         $scope.regularStartParameters = {};
         $scope.configSubmit = function() {
-            console.log($scope.regularStartParameters)
+            // TODO: Start the container, and when its up, emit & move to next step
+            $rootScope.$emit('launchedContainer', $scope.regularStartParameters);
+            WizardHandler.wizard().next()
         };
         $scope.regularParameterFields = [ { key: 'Hostname',  type: 'hostname', templateOptions: { placeholder: 'development-srv-01' } },
                                         { key: 'Domainname',type: 'domain',   templateOptions: { placeholder: 'mycompany.com' } },

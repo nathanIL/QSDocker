@@ -16,12 +16,8 @@
             </div>
         </wz-step>
         <wz-step title="{{ strings.manage.bullet }}">
-            <div class="row">
-                <div class="col-md-3 col-md-offset-4">
-                    <h1 ng-bind="strings.manage.title"></h1>
-
-                    <p ng-bind="strings.manage.description"></p>
-                </div>
+            <div class="row" ng-controller="manageController">
+                <div ng-include="template"></div>
             </div>
         </wz-step>
     </wizard>
